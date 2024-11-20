@@ -1,0 +1,335 @@
+/* #0033a0 */
+
+body {
+  color: white;
+  background-color: black;
+  font-family: "Poppins", sans-serif;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+  transition: 0.3s;
+}
+
+* {
+  font-family: "Poppins", sans-serif;
+}
+
+body::selection {
+  background-color: #00ffd02a;
+  color: #ffffff;
+}
+
+nav {
+  background-color: rgb(13, 13, 13);
+  min-height: 65px;
+  width: 95%;
+  max-width: 900px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  flex-wrap: wrap;
+  border-radius: 10rem;
+  margin-top: 12px;
+}
+
+.logo {
+  max-width: 60px;
+  max-height: 60px;
+}
+
+.logo:hover {
+  cursor: pointer;
+}
+
+a {
+  color: rgb(188, 188, 188);
+  text-decoration: none;
+  margin: 0px 20px 0px 20px;
+  width: 90px;
+  text-align: center;
+  transition: 0.3s;
+  border-radius: 50vh;
+}
+
+a:hover {
+  color: white;
+  background-color: #0033a0;
+}
+
+.cart {
+  margin-left: 150px;
+}
+
+.about {
+  margin-right: 150px;
+}
+
+.sign {
+  border: none;
+  width: 100px;
+  height: 35px;
+  background-color: rgb(215, 215, 215);
+  color: rgb(26, 26, 26);
+  border-radius: 3px;
+  font-size: medium;
+  font-weight: 600;
+  transition: 0.3s;
+  clip-path: polygon(
+    0 0,
+    100% 0,
+    100% calc(100% - 12px),
+    calc(100% - 12px) 100%,
+    0 100%
+  );
+}
+
+.sign:hover {
+  cursor: pointer;
+  background-color: #0033a0;
+  color: white;
+}
+
+.head {
+  display: flex;
+  flex-direction: row;
+  margin: 50px;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.h1 {
+  font-size: 2rem;
+  max-width: 32rem;
+  text-align: left;
+  margin-bottom: 2rem;
+  letter-spacing: -0.05rem;
+  word-spacing: 0.15rem;
+}
+
+.h1h2 {
+  margin-top: -10px;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+@keyframes scale {
+  from {
+    scale: 0.75;
+    opacity: 0;
+  }
+  to {
+    scale: 1;
+    opacity: 1;
+  }
+}
+
+.image-wrap {
+  position: relative;
+}
+
+.headImg {
+  width: 800px;
+  border-radius: 0 34px 0 0;
+  transition: all 0.5s ease;
+  margin-left: 50px;
+  scale: 0.75;
+  opacity: 0;
+  animation: scale 2s ease forwards;
+  filter: hue-rotate(-20deg) saturate(1) contrast(1.2);
+}
+
+.image-wrap:after {
+  content: "";
+  position: absolute;
+  left: 48px;
+  top: 0;
+  height: 100%;
+  width: 240px;
+  z-index: 9;
+  background: linear-gradient(to left, rgba(0, 0, 0, 0), rgba(0, 0, 0, 1));
+}
+
+.h1disc {
+  font-weight: 300;
+  color: rgb(135, 135, 135);
+  margin-bottom: 40px;
+  font-size: 1.05rem;
+  margin: 0 1rem;
+
+  max-width: 28rem;
+  text-align: left;
+}
+
+.signup {
+  border: none;
+  width: 160px;
+  height: 45px;
+  background-color: rgb(215, 215, 215);
+  color: rgb(26, 26, 26);
+  border-radius: 2rem;
+  font-size: medium;
+  font-weight: 700;
+  transition: 0.4s;
+  font-size: 0.9rem;
+  letter-spacing: -0.02rem;
+
+  cursor: pointer;
+  position: relative;
+  box-shadow: 0 0.5rem 2rem rgb(255, 255, 255, 0.4);
+  opacity: 0.9;
+}
+
+.signup:hover {
+  opacity: 1;
+}
+
+.search {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.searchIcon {
+  height: 45px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+.input {
+  color: white;
+  background-color: #272727;
+  height: 45px;
+  max-width: 250px;
+  width: 90vw;
+  border: none;
+  border-radius: 4rem;
+  padding-left: 1.5rem;
+}
+
+.cards-wrap {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.cards {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  max-width: 1500px;
+}
+@keyframes fadein {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.card {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  background: linear-gradient(240deg, rgb(25, 25, 25), black);
+  border-radius: 30px;
+  width: 300px;
+  min-height: 480px;
+
+  padding: 15px;
+  margin: 50px;
+  transition: 0.4s;
+  border: 1px solid rgba(255, 255, 255, 0.04);
+  box-shadow: 0 1rem 2rem rgba(255, 255, 255, 0.04);
+  opacity: 0;
+  animation: fadein 1s ease-in-out forwards;
+}
+
+.card:hover {
+  transform: translateY(-10px) scale(1.04);
+  background-color: rgb(35, 35, 35);
+}
+
+.details {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  text-align: left;
+}
+
+.number {
+  font-size: 1.2rem;
+  font-weight: bold;
+}
+
+.label {
+  opacity: 0.5;
+}
+
+.car-Buttons {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.carImg {
+  height: 100% !important;
+  width: 100% !important;
+}
+
+.car-name {
+  font-size: 24px;
+  margin: 0;
+}
+.car-disc {
+  font-size: 14px;
+  color: gray;
+  text-align: left;
+  line-height: 1.75;
+  margin: 0 1rem 1rem 2.25rem;
+}
+
+.card-title {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 0 1rem 1rem 1rem;
+}
+
+.car-price {
+  font-family: monospace;
+  color: #bababa;
+  font-weight: 600;
+  letter-spacing: 0.01rem;
+  font-size: 1rem;
+}
+
+.car-toCart {
+  background-color: #181818;
+  border: 1px solid rgb(255, 255, 255, 0.08);
+  color: white;
+  height: 40px;
+  width: 140px;
+  font-weight: 500;
+  font-size: 14px;
+  letter-spacing: -0.01rem;
+  border-radius: 3rem;
+  margin: 5px;
+  transition: 0.3s;
+  opacity: 0.75;
+}
+
+.car-toCart:hover {
+  scale: 1.03;
+  opacity: 1;
+  cursor: pointer;
+  background-color: #333333;
+}
