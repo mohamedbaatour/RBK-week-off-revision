@@ -28,7 +28,7 @@ var cars = [
     image:
       "https://www.bmw-m.com/content/dam/bmw/marketBMW_M/www_bmw-m_com/all-models/model-navigation/bmw-m4-coupe-lci-flyout1.png?imwidth=1440",
     price: 74000,
-    category: "M4",
+    category: "Coupé",
   },
   {
     name: "M4 CS",
@@ -37,7 +37,7 @@ var cars = [
     image:
       "https://www.bmw-m.com/content/dam/bmw/marketBMW_M/www_bmw-m_com/all-models/model-navigation/bmw-m4-cs-flyout.png?imwidth=1440",
     price: 96000,
-    category: "M4",
+    category: "Sedan",
   },
   {
     name: "M3 Sedan",
@@ -46,7 +46,7 @@ var cars = [
     image:
       "https://www.bmw-m.com/content/dam/bmw/marketBMW_M/www_bmw-m_com/all-models/model-navigation/bmw-m3-competition-sedan-m-xdrive-lci-flyout.png?imwidth=1440",
     price: 72000,
-    category: "M3",
+    category: "Sedan",
   },
   {
     name: "M3 Touring",
@@ -55,7 +55,7 @@ var cars = [
     image:
       "https://www.bmw-m.com/content/dam/bmw/marketBMW_M/www_bmw-m_com/all-models/model-navigation/bmw-m3-competition-touring-m-xdrive-lci-flyout.png?imwidth=1440",
     price: 75000,
-    category: "M3",
+    category: "Touring",
   },
   {
     name: "M2",
@@ -64,7 +64,7 @@ var cars = [
     image:
       "https://www.bmw-m.com/content/dam/bmw/marketBMW_M/www_bmw-m_com/all-models/model-navigation/bmw-m2-lci-flyout.png?imwidth=1440",
     price: 72000,
-    category: "M2",
+    category: "Sedan",
   },
   {
     name: "XM Label Red",
@@ -73,24 +73,41 @@ var cars = [
     image:
       "https://www.bmw-m.com/content/dam/bmw/marketBMW_M/www_bmw-m_com/all-models/model-navigation/n-bmw-xm-label-red-flyout1.png?imwidth=1440",
     price: 185000,
-    category: "XM",
+    category: "SUV",
   },
 ];
 
-for (i = 0; i < cars.length; i++) {
-  $(".cards").append(`<div class="card" style="animation-delay: ${i * 200}ms">
+//////////add to cart
+
+var cartAsString = window.localStorage.getItem("cart") || "[]";
+var cartParsed = JSON.parse(cartAsString);
+
+var addToCart = function (i) {
+  var car = cars[i];
+  cartParsed.push(car);
+  var stringAgain = JSON.stringify(cartParsed);
+  window.localStorage.setItem("cart", stringAgain);
+
+  window.location.href = "cart.html";
+};
+console.log(cartParsed);
+
+for (y = 0; y < cars.length; y++) {
+  $(".cards").append(`<div class="card"  data-category="${
+    cars[y].category
+  }" style="animation-delay: ${y * 200}ms">
         
     <div class="card-content">
-        <img class="carImg" src="${cars[i].image}">
+        <img class="carImg" src="${cars[y].image}">
         <div class="card-title">
-        <h4 class="car-name">${cars[i].name}</h4>
-             <p class="car-price">$${cars[i].price}</p>
+        <h4 class="car-name">${cars[y].name}</h4>
+             <p class="car-price">$${cars[y].price}</p>
         </div>  
         
-        <p class="car-disc">${cars[i].description}</p>
+        <p class="car-disc">${cars[y].description}</p>
    
         <div class="car-Buttons">
-        <button type="button" class="car-toCart">Add To Cart</button>
+        <button type="button" class="car-toCart" onClick="addToCart(${y})">Add To Cart</button>
     </div>
     </div>
     </div>`);
@@ -102,6 +119,39 @@ $(".sign").click(function () {
 
 $(".signup").click(function () {
   window.location.href = "http://localhost:5173/";
+});
+
+//////search functionality
+
+$(".input").keydown(function () {
+  var carName = $(".car-name");
+  var inp = $(".input").val().toLowerCase();
+
+  for (var i = 0; i < carName.length; i++) {
+    var nameText = $(carName[i]).text().toLowerCase();
+
+    if (nameText.includes(inp)) {
+      $(carName[i]).closest(".card").show();
+    } else {
+      $(carName[i]).closest(".card").hide();
+    }
+  }
+});
+
+/////filter functionality
+
+$(".filter").change(function () {
+  var selectedCategory = $(".filter").val();
+
+  $(".card").each(function () {
+    var cardCategory = $(this).data("category");
+
+    if (cardCategory === selectedCategory || selectedCategory === "") {
+      $(this).show();
+    } else {
+      $(this).hide();
+    }
+  });
 });
 
 //please npm run dev to activate the sign up page. Thanks :)
